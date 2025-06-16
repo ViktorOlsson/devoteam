@@ -1,2 +1,7 @@
-<input [(ngModel)]="searchString" type="search" name="search-input" id="">
-<button (click)="searchMovie()" type="button">Search</button>
+
+<mat-form-field>
+    <mat-label>Search for a movie!</mat-label>
+    <input matInput placeholder="Ex. Star Wars" [(ngModel)]="searchString" name="searchString">
+</mat-form-field>
+ <button (click)="searchMovie()" mat-raised-button color="primary">Search</button>
+

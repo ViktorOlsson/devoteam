@@ -1,1 +1,2 @@
 <app-search-input (eventSearchString)="handleMovieSearch($event)"></app-search-input>
+<app-autocomplete [suggestions]="suggestions" (eventEmitMovie)="handleSelectMovie($event)"></app-autocomplete>

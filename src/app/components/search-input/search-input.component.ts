@@ -17,4 +17,8 @@ export class SearchInputComponent {
   searchMovie() {
     this.eventSearchString.emit(this.searchString);
   }
+
+  onInputChange() {
+    this.eventSearchString.emit(this.searchString);
+  }
 }

@@ -4,10 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { Movie } from './models/movie.model';
 import { debounceTime, Subject } from 'rxjs';
+import { MovieCardComponent } from './components/movie-card/movie-card.component';
 
 @Component({
   selector: 'app-root',
-  imports: [SearchInputComponent, AutocompleteComponent],
+  imports: [SearchInputComponent, AutocompleteComponent, MovieCardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

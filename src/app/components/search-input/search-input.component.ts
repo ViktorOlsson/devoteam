@@ -3,11 +3,7 @@ import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
-
-export interface searchStringEvent {
-  searchString: string;
-  isButtonClicked: boolean;
-}
+import { searchStringEvent } from '../../models/search-string-event.model';
 
 @Component({
   selector: 'app-search-input',

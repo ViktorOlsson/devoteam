@@ -1,4 +1,4 @@
-<div class="suggestions-container">
+<div class="suggestions-container" *ngIf="suggestions.length">
   <mat-list>
     <mat-list-item *ngFor="let suggestion of suggestions" (click)="onMovieClick(suggestion)" class="suggestion-item">
       {{ suggestion.name }}

@@ -15,3 +15,12 @@
 .suggestion-item:hover {
   background-color: #eee;
 }
+
+:host {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  background: white;
+  width: 100%;
+}

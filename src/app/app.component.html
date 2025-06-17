@@ -1,2 +1,7 @@
-<app-search-input (eventSearchString)="handleMovieSearch($event)"></app-search-input>
-<app-autocomplete [suggestions]="suggestions" (eventEmitMovie)="handleSelectMovie($event)"></app-autocomplete>
+<main class="main-container">
+    <app-search-input (eventSearchString)="handleMovieSearch($event)"></app-search-input>
+    <app-autocomplete [suggestions]="suggestions" (eventEmitMovie)="handleSelectMovie($event)"></app-autocomplete>
+    <ng-container *ngFor="let movie of selectedMovies">
+        <app-movie-card *ngIf="selectedMovies" [movie]="movie"></app-movie-card>
+    </ng-container>
+</main>

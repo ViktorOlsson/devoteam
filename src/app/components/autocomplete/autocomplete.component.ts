@@ -14,15 +14,9 @@ export class AutocompleteComponent {
    @Input() suggestions: Movie[] = [];
    @Output() eventEmitMovie = new EventEmitter<Movie>();
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['suggestions']) {
-      console.log(changes);
-    }
-  }
 
   onMovieClick(movie: Movie) {
     this.eventEmitMovie.emit(movie);
   }
 
-  
 }

@@ -3,6 +3,7 @@
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.5.
 
 ## Run project
+
 To run the project locally some installations are needed.
 
 1. Install NodeJS, I've used version 20.17.0
@@ -21,6 +22,7 @@ It is also possible to run the project using the dockerfile. In order to run thi
 4. Navigate to http://localhost:4200/
 
 The perk of using the docker method is it requiers less setup and is more consistent since the versioning is the same.
+
 ## Development server
 
 To start a local development server, run:

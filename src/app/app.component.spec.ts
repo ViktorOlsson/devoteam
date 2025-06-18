@@ -1,6 +1,14 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
+import {
+  HttpTestingController,
+  HttpClientTestingModule,
+} from '@angular/common/http/testing';
 import { Movie } from './models/movie.model';
 import { firstValueFrom } from 'rxjs';
 import { mockMovies } from './shared/mocks/movies.mock';
@@ -32,13 +40,18 @@ describe('AppComponent', () => {
     component.ngOnInit();
 
     let suggestions: Movie[] | undefined;
-    component.suggestions$.subscribe(movies => suggestions = movies);
+    component.suggestions$.subscribe((movies) => (suggestions = movies));
 
-    component.handleMovieSearch({ searchString: 'Incep', isButtonClicked: false });
+    component.handleMovieSearch({
+      searchString: 'Incep',
+      isButtonClicked: false,
+    });
 
     tick(600);
 
-    const req = httpMock.expectOne(`https://movies-mock-api-677053851485.europe-north1.run.app/api/movies?q=Incep`);
+    const req = httpMock.expectOne(
+      `https://movies-mock-api-677053851485.europe-north1.run.app/api/movies?q=Incep`,
+    );
     expect(req.request.method).toBe('GET');
 
     req.flush([mockMovies[0]]);
@@ -52,13 +65,15 @@ describe('AppComponent', () => {
     component.ngOnInit();
 
     let suggestions: Movie[] | undefined;
-    component.suggestions$.subscribe(movies => suggestions = movies);
+    component.suggestions$.subscribe((movies) => (suggestions = movies));
 
     component.handleMovieSearch({ searchString: 'In', isButtonClicked: false });
 
     tick(600);
 
-    const req = httpMock.expectOne(`https://movies-mock-api-677053851485.europe-north1.run.app/api/movies?q=In`);
+    const req = httpMock.expectOne(
+      `https://movies-mock-api-677053851485.europe-north1.run.app/api/movies?q=In`,
+    );
     expect(req.request.method).toBe('GET');
 
     req.flush([mockMovies[0], mockMovies[1]]);
@@ -86,10 +101,11 @@ describe('AppComponent', () => {
     component.handleMovieSearch({ searchString: ' ', isButtonClicked: false });
 
     tick(600);
-    httpMock.expectNone(`https://movies-mock-api-677053851485.europe-north1.run.app/api/movies?q=   `);
+    httpMock.expectNone(
+      `https://movies-mock-api-677053851485.europe-north1.run.app/api/movies?q=   `,
+    );
 
     const suggestions = await firstValueFrom(component.suggestions$);
     expect(suggestions).toEqual([]);
   }));
-
 });

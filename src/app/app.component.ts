@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
 
   private readonly debounceTimeMs = 600;
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService) {}
 
   ngOnInit(): void {
     this.suggestions$ = this.searchSubject.pipe(
@@ -53,9 +53,9 @@ export class AppComponent implements OnInit {
               this.selectedMovies = [...movies];
             }
           }),
-          map((movies) => (isButtonClicked ? [] : movies))
+          map((movies) => (isButtonClicked ? [] : movies)),
         );
-      })
+      }),
     );
   }
 

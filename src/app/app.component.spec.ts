@@ -38,7 +38,7 @@ describe('AppComponent', () => {
 
     tick(600);
 
-    const req = httpMock.expectOne(`${component['url']}?q=Incep`);
+    const req = httpMock.expectOne(`https://movies-mock-api-677053851485.europe-north1.run.app/api/movies?q=Incep`);
     expect(req.request.method).toBe('GET');
 
     req.flush([mockMovies[0]]);
@@ -58,7 +58,7 @@ describe('AppComponent', () => {
 
     tick(600);
 
-    const req = httpMock.expectOne(`${component['url']}?q=In`);
+    const req = httpMock.expectOne(`https://movies-mock-api-677053851485.europe-north1.run.app/api/movies?q=In`);
     expect(req.request.method).toBe('GET');
 
     req.flush([mockMovies[0], mockMovies[1]]);
@@ -86,7 +86,7 @@ describe('AppComponent', () => {
     component.handleMovieSearch({ searchString: ' ', isButtonClicked: false });
 
     tick(600);
-    httpMock.expectNone(`${component['url']}?q=   `);
+    httpMock.expectNone(`https://movies-mock-api-677053851485.europe-north1.run.app/api/movies?q=   `);
 
     const suggestions = await firstValueFrom(component.suggestions$);
     expect(suggestions).toEqual([]);

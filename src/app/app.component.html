@@ -1,10 +1,21 @@
 <app-toolbar></app-toolbar>
+
 <main class="main-container">
-    <div class="search-wrapper">
-        <app-search-input (eventSearchString)="handleMovieSearch($event)"></app-search-input>
-        <app-autocomplete *ngIf="searchString$ | async" [suggestions]="suggestions" (eventEmitMovie)="handleSelectMovie($event)"></app-autocomplete>
-    </div>
-    <ng-container *ngFor="let movie of selectedMovies">
-        <app-movie-card *ngIf="selectedMovies" [movie]="movie"></app-movie-card>
+  <div class="search-wrapper">
+    <app-search-input
+      (eventSearchString)="handleMovieSearch($event)">
+    </app-search-input>
+
+    <ng-container *ngIf="suggestions$ | async as suggestions">
+      <app-autocomplete
+        *ngIf="suggestions.length > 0"
+        [suggestions]="suggestions"
+        (eventEmitMovie)="handleSelectMovie($event)">
+      </app-autocomplete>
     </ng-container>
+  </div>
+
+  <ng-container *ngFor="let movie of selectedMovies">
+    <app-movie-card [movie]="movie"></app-movie-card>
+  </ng-container>
 </main>

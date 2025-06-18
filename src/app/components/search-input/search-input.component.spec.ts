@@ -8,9 +8,8 @@ describe('SearchInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SearchInputComponent]
-    })
-      .compileComponents();
+      imports: [SearchInputComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SearchInputComponent);
     component = fixture.componentInstance;
@@ -29,7 +28,7 @@ describe('SearchInputComponent', () => {
 
     expect(component.eventSearchString.emit).toHaveBeenCalledWith({
       searchString: 'The lord of the rings',
-      isButtonClicked: false
+      isButtonClicked: false,
     });
   });
 
@@ -39,12 +38,13 @@ describe('SearchInputComponent', () => {
     component.searchString = 'Star wars';
     fixture.detectChanges();
 
-    const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
+    const button: HTMLButtonElement =
+      fixture.nativeElement.querySelector('button');
     button.click();
 
     expect(component.eventSearchString.emit).toHaveBeenCalledWith({
       searchString: 'Star wars',
-      isButtonClicked: true
+      isButtonClicked: true,
     });
   });
 });

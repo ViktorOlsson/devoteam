@@ -1,8 +1,16 @@
 <div class="flex-container">
-    <mat-form-field>
-        <mat-label>Search for a movie!</mat-label>
-        <input matInput placeholder="Ex. Star Wars" autocomplete="off" [(ngModel)]="searchString" (input)="onInputChange()" name="searchString">
-    </mat-form-field>
-    <button (click)="searchMovie()" mat-raised-button color="primary">Search</button>
- </div>
-
+  <mat-form-field>
+    <mat-label>Search for a movie!</mat-label>
+    <input
+      matInput
+      placeholder="Ex. Star Wars"
+      autocomplete="off"
+      [(ngModel)]="searchString"
+      (input)="onInputChange()"
+      name="searchString"
+    />
+  </mat-form-field>
+  <button (click)="searchMovie()" mat-raised-button color="primary">
+    Search
+  </button>
+</div>

@@ -2,15 +2,15 @@
 
 <main class="main-container">
   <div class="search-wrapper">
-    <app-search-input
-      (eventSearchString)="handleMovieSearch($event)">
+    <app-search-input (eventSearchString)="handleMovieSearch($event)">
     </app-search-input>
 
     <ng-container *ngIf="suggestions$ | async as suggestions">
       <app-autocomplete
         *ngIf="suggestions.length > 0"
         [suggestions]="suggestions"
-        (eventEmitMovie)="handleSelectMovie($event)">
+        (eventEmitMovie)="handleSelectMovie($event)"
+      >
       </app-autocomplete>
     </ng-container>
   </div>

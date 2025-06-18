@@ -1,11 +1,20 @@
 <mat-card *ngIf="movie" class="main-card-frame" appearance="outlined">
   <mat-card-header>
-    <mat-card-title>{{movie.name}} ({{ (movie.duration / 60) | number:'1.0-0' }} min)</mat-card-title>
+    <mat-card-title
+      >{{ movie.name }} ({{
+        movie.duration / 60 | number: "1.0-0"
+      }}
+      min)</mat-card-title
+    >
     <mat-card-subtitle *ngIf="movie">
       Genres: {{ movie.genres }}
     </mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image [src]="movie.thumbnail" alt="Movie poster for {{ movie.name }}">
+  <img
+    mat-card-image
+    [src]="movie.thumbnail"
+    alt="Movie poster for {{ movie.name }}"
+  />
   <mat-card-content>
     <p>
       {{ movie.description }}

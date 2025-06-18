@@ -5,7 +5,7 @@
       Genres: {{ movie.genres }}
     </mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image [src]="movie.thumbnail" alt="Movie poster">
+  <img mat-card-image [src]="movie.thumbnail" alt="Movie poster for {{ movie.name }}">
   <mat-card-content>
     <p>
       {{ movie.description }}

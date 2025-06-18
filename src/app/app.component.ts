@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { debounceTime, filter, switchMap, tap, map } from 'rxjs/operators';
-
+import { debounceTime, switchMap, tap, map } from 'rxjs/operators';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-
 import { Movie } from './models/movie.model';
 import { searchStringEvent } from './models/search-string-event.model';
+import { MovieService } from './data/movie-service/movies.service';
 
 @Component({
   selector: 'app-root',
@@ -35,10 +33,9 @@ export class AppComponent implements OnInit {
 
   suggestions$!: Observable<Movie[]>;
 
-  private readonly url = 'https://movies-mock-api-677053851485.europe-north1.run.app/api/movies';
   private readonly debounceTimeMs = 600;
 
-  constructor(private http: HttpClient) { }
+  constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
     this.suggestions$ = this.searchSubject.pipe(
@@ -48,11 +45,9 @@ export class AppComponent implements OnInit {
         isButtonClicked,
       })),
       switchMap(({ trimmedString, isButtonClicked }) => {
-        if (!trimmedString) {
-          return of([]);
-        }
+        if (!trimmedString.trim()) return of([]);
 
-        return this.http.get<Movie[]>(`${this.url}?q=${trimmedString}`).pipe(
+        return this.movieService.getMovies(trimmedString.trim()).pipe(
           tap((movies) => {
             if (isButtonClicked && movies.length > 0) {
               this.selectedMovies = [...movies];

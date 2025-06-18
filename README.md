@@ -13,6 +13,14 @@ To run the project locally some installations are needed.
 6. Start by the project using ng serve
 7. If the default port is taken(4200) use ng serve --port PORT NUMBER
 
+It is also possible to run the project using the dockerfile. In order to run this follow these steps
+
+1. Install and start Docker on your computer
+2. Clone the GIT repo
+3. Run the command docker build -t devoteam-assignment . && docker run --name devoteam-assignment -p 4200:4200 devoteam-assignment inside the project
+4. Navigate to http://localhost:4200/
+
+The perk of using the docker method is it requiers less setup and is more consistent since the versioning is the same.
 ## Development server
 
 To start a local development server, run:

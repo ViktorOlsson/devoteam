@@ -2,6 +2,17 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.5.
 
+## Run project
+To run the project locally some installations are needed.
+
+1. Install NodeJS, I've used version 20.17.0
+2. Install NPM
+3. The angular CLI using npm install -g @angular/cli
+4. Clone project using GIT
+5. Run npm install in the root folder of the project
+6. Start by the project using ng serve
+7. If the default port is taken(4200) use ng serve --port PORT NUMBER
+
 ## Development server
 
 To start a local development server, run:

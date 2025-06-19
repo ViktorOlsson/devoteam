@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { debounceTime, switchMap, tap, map } from 'rxjs/operators';
+import { debounceTime, switchMap, tap, map, catchError } from 'rxjs/operators';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
@@ -25,6 +25,7 @@ import { MovieService } from './data/movie-service/movies.service';
 })
 export class AppComponent implements OnInit {
   selectedMovies: Movie[] = [];
+  noResultsFound: boolean = false;
 
   private searchSubject = new BehaviorSubject<searchStringEvent>({
     searchString: '',
@@ -45,17 +46,29 @@ export class AppComponent implements OnInit {
         isButtonClicked,
       })),
       switchMap(({ trimmedString, isButtonClicked }) => {
-        if (!trimmedString.trim()) return of([]);
+        if (!trimmedString.trim()) {
+          this.noResultsFound = false;
+          return of([]);
+        }
 
         return this.movieService.getMovies(trimmedString.trim()).pipe(
           tap((movies) => {
             if (isButtonClicked && movies.length > 0) {
               this.selectedMovies = [...movies];
+              this.noResultsFound = false;
+            } else if (isButtonClicked && movies.length === 0) {
+              this.noResultsFound = true;
+            } else {
+              this.noResultsFound = false;
             }
           }),
           map((movies) => (isButtonClicked ? [] : movies)),
+          catchError(() => {
+            this.noResultsFound = false;
+            return of([]);
+          })
         );
-      }),
+      })
     );
   }
 

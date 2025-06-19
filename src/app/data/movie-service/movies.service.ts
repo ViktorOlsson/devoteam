@@ -13,11 +13,6 @@ export class MovieService {
   constructor(private http: HttpClient) {}
 
   getMovies(query: string): Observable<Movie[]> {
-    return this.http.get<Movie[]>(`${this.url}?q=${query}`).pipe(
-      catchError((error: HttpErrorResponse) => {
-        console.error('MovieService error:', error);
-        return of([]);
-      }),
-    );
+    return this.http.get<Movie[]>(`${this.url}?q=${query}`);
   }
 }

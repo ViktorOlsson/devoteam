@@ -27,18 +27,21 @@ describe('MovieService', () => {
     service.getMovies('star wars').subscribe();
 
     const req = httpMock.expectOne(
-      `https://movies-mock-api-677053851485.europe-north1.run.app/api/movies?q=star wars`,
+      `https://movies-mock-api-677053851485.europe-north1.run.app/api/movies?q=star wars`
     );
     expect(req.request.method).toBe('GET');
   });
 
-  it('should return empty array on HTTP error', () => {
-    service.getMovies('fail').subscribe((movies) => {
-      expect(movies).toEqual([]);
+  it('should propagate error on HTTP failure', () => {
+    service.getMovies('fail').subscribe({
+      next: () => fail('Expected an error, but got a success response'),
+      error: (error) => {
+        expect(error.status).toBe(500);
+      },
     });
 
     const req = httpMock.expectOne(
-      `https://movies-mock-api-677053851485.europe-north1.run.app/api/movies?q=fail`,
+      `https://movies-mock-api-677053851485.europe-north1.run.app/api/movies?q=fail`
     );
     req.flush('Error', { status: 500, statusText: 'Server Error' });
   });

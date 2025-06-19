@@ -13,6 +13,7 @@
       >
       </app-autocomplete>
     </ng-container>
+    <p *ngIf="noResultsFound" class="no-results-message">No new movies could be found for this search.</p>
   </div>
 
   <ng-container *ngFor="let movie of selectedMovies">

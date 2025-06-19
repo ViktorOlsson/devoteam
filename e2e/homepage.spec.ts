@@ -84,4 +84,18 @@ test.describe('Movie Search and Autocomplete ', () => {
 
     await expect(suggestionsContainer).toBeHidden();
   });
+
+  test('should show the message text if no movies are returned without error', async ({ page }) => {
+    const input = page.getByPlaceholder('Ex. Star Wars');
+    const suggestionsContainer = page.locator('.suggestions-container');
+    const noMoviesFoundTag = page.getByText('No new movies could be found');
+    const searchButton = page.getByRole('button', { name: /search/i });
+
+    await input.fill('Blablablabla');
+    await searchButton.click();
+    await page.waitForTimeout(700);
+
+    await expect(suggestionsContainer).toBeHidden();
+    await expect(noMoviesFoundTag).toBeVisible();
+  })
 });
